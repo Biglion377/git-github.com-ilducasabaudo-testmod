@@ -1,0 +1,157 @@
+focus_tree = {
+	id = ita-napoli-rp
+	continuous_focus_position = { x = 0 y = 1000 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ITA
+		}
+	}
+	#La Crisi Italiana
+	focus = {
+		id = ITA_la_crisi_italiana
+		icon = GFX_goal_molotov_ribbentrop_pact
+		x = 3
+		y = 0
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		ai_will_do = { factor = 100 }
+		completion_reward = {
+			Un set_stability = 30
+			
+		}
+		select_effect = {
+			country_event = { giorni = 1 id = test.1 } 
+		}
+	}
+
+	#Il Gran consiglio dei Paguri
+	focus = {
+		id = ITA_il_gran_consiglio_dei_paguri
+		icon = GFX_ITA_il_gran_consiglio_dei_paguri-8058
+		x = 3
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_SPA_CARLIST_UPRISING
+		}
+		prerequisite = { focus = ITA_la_crisi_italiana  }
+		ai_will_do = { factor = 100 }
+		available = {
+			
+			
+		}
+		completion_reward = {
+			state_event = stateevent.1
+			
+		}
+	}
+
+	#Ciccio non passa più dalla porta
+	focus = {
+		id = ITA_ciccio_non_passa_piu_dalla_porta
+		icon = GFX_ITA_ciccio_non_passa_piu_dalla_porta-59
+		x = 3
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = ITA_il_gran_consiglio_dei_paguri  }
+		ai_will_do = { factor = 100 }
+		completion_reward = {
+			state_event = stateevent.1
+			
+		}
+	}
+
+	#Joker Nuovo erede!
+	focus = {
+		id = ITA_joker_nuovo_erede
+		icon = GFX_ITA_joker_nuovo_erede-8067
+		x = 4
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = ITA_ciccio_non_passa_piu_dalla_porta  }
+		ai_will_do = { factor = 50 }
+		select_effect = {
+			retire_country_leader = yes
+			
+		}
+	}
+
+	#Una nuova Frontiera
+	focus = {
+		id = ITA_una_nuova_frontiera
+		icon = GFX_focus_befriend_italy
+		x = 2
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = ITA_ciccio_non_passa_piu_dalla_porta  }
+		mutually_exclusive = { focus = ITA_joker_nuovo_erede  }
+		ai_will_do = { factor = 50 }
+		completion_reward = {
+			has_stability < 0.3
+			
+			
+			
+		}
+		select_effect = {
+			kill_country_leader = yes
+			
+		}
+	}
+
+	#IL RITORNO DI LVI
+	focus = {
+		id = ITA_il_ritorno_di_lvi
+		icon = GFX_ITA_il_ritorno_di_lvi-445
+		x = 2
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = ITA_una_nuova_frontiera  }
+	}
+
+	#Con Jerry per i futuri 100 anni
+	focus = {
+		id = ITA_con_jerry_per_i_futuri_100_anni
+		icon = GFX_ITA_con_jerry_per_i_futuri_100_anni-445
+		x = 0
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = ITA_una_nuova_frontiera  }
+		mutually_exclusive = { focus = ITA_il_ritorno_di_lvi  }
+		ai_will_do = { factor = 50 }
+		completion_reward = {
+			add_political_power = 50
+			
+		}
+		select_effect = {
+			create_country_leader = {
+			 name = 'Jerry Scotti' 
+			desc = 'POLITICS_JERRY_SCOTTI_DESC' 
+			picture = 'Portrait_Italy_Jerry_Scotti.dds' expire = '1965.1.1' 
+			ideology = comunism
+			traits = {
+			}
+			 }
+			
+		}
+	}
+
+}
